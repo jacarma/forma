@@ -7,14 +7,21 @@ import { InputProps } from '../FormaComponent'
 import { useEffectiveInputProps } from '../useEffectiveProps'
 
 export function Checkbox(rawProps: InputProps) {
-  const { label, value, description, enabled, visible, setValue, errors } =
-    useEffectiveInputProps<boolean>(rawProps)
+  const {
+    label,
+    value,
+    description,
+    enabled,
+    visible,
+    setValue,
+    errors,
+    firstError
+  } = useEffectiveInputProps<boolean>(rawProps)
   const onChange = useCallback(
     (event) => setValue(event.currentTarget.checked),
     [setValue]
   )
-  const helper = errors.length ? errors[0] : description
-
+  const helper = firstError ?? description
   if (!visible) return null
 
   return (

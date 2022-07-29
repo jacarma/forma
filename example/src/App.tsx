@@ -22,6 +22,11 @@ const App = () => {
         onChange={setCtx}
         onValidChange={setValid}
         columns={3}
+        translations={{
+          validations: {
+            int: 'Solo numeritos please'
+          }
+        }}
       >
         <Checkbox
           model='lol'
@@ -55,12 +60,31 @@ const App = () => {
           <Radio value='new' label='New' />
         </RadioGroup>
       </Forma>
-      Form is valid {JSON.stringify(isValid)}
-      <textarea
-        value={JSON.stringify(ctx, null, 2)}
-        readOnly
-        style={{ display: 'block', width: '100%', height: '300px' }}
-      />
+      <div
+        style={{
+          display: 'block',
+          margin: '8px'
+        }}
+      >
+        Form is {isValid ? '✅ Valid' : '❌ Invalid'}
+        <pre
+          data-lang='scss'
+          className='prettyprint'
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '300px',
+            boxSizing: 'border-box',
+            fontFamily: 'Monaco, Menlo, Consolas, "Courier New", monospace',
+            background: '#fff',
+            backgroundColor: '#1D1E22',
+            color: '#fff',
+            fontSize: '13px'
+          }}
+        >
+          {JSON.stringify(ctx, null, 2)}
+        </pre>
+      </div>
     </div>
   )
 }

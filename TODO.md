@@ -20,10 +20,8 @@ Validations
 - maxDate
 - minDate
 
-Layout
 Separate Forma and FormaMaterial
 Readme
-error messages
 validations wait for blur
 disable parent
 parent and root references (or prototypical inheritance)

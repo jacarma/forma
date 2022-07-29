@@ -8,6 +8,7 @@ export type FormProps = {
   onChange?: (value: JsonObject, isValid: boolean) => void
   onValidChange?: (isVaid: boolean) => void
   columns?: number
+  translations?: JsonObject
 }
 
 export function Forma({
@@ -15,9 +16,15 @@ export function Forma({
   children,
   onChange,
   onValidChange,
-  columns
+  columns,
+  translations
 }: FormProps) {
-  const ctx = useNewFormaContext(initialContext, onChange, onValidChange)
+  const ctx = useNewFormaContext(
+    initialContext,
+    onChange,
+    onValidChange,
+    translations
+  )
   const ncols = columns || 1
   const style = {
     ['--forma-columns' as any]: ncols,

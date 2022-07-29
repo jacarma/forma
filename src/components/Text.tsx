@@ -17,13 +17,14 @@ export function ResolvedText({
   visible,
   setValue,
   errors,
-  className
+  className,
+  firstError
 }: EffectiveInputProps<string> & TextFieldProps) {
   const onChange = useCallback(
     (event) => setValue(event.currentTarget.value),
     [setValue]
   )
-  const helper = errors.length ? errors[0] : description
+  const helper = firstError ?? description
 
   if (!visible) return null
 

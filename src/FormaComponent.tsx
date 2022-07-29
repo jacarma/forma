@@ -35,4 +35,5 @@ export type EffectiveInputProps<T> = EffectiveComponentProps & {
   value: T
   setValue: (value: T) => void
   errors: Array<string>
+  firstError?: string
 }

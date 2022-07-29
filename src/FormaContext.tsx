@@ -10,6 +10,7 @@ export type FormaContextType = {
   contextPath: Array<string>
   context: JsonObject
   setValid: (path: string, isValid: boolean) => void
+  translations: JsonObject
 }
 
 export const FormaContext = React.createContext({
@@ -18,14 +19,16 @@ export const FormaContext = React.createContext({
   evaluate: () => null,
   contextPath: [],
   context: {},
-  setValid: () => undefined
+  setValid: () => undefined,
+  translations: {}
 } as FormaContextType)
 
 export function useNewFormaContext(
   initialModel?: JsonObject,
   onChange?: (value: JsonObject, isValid: boolean) => void,
-  onValidChange?: (isValid: boolean) => void
-) {
+  onValidChange?: (isValid: boolean) => void,
+  translations?: JsonObject
+): FormaContextType {
   const [context, setContext] = useState<JsonObject>(initialModel || {})
   const contextPath: Array<string> = []
 
@@ -67,15 +70,24 @@ export function useNewFormaContext(
     if (formWasValid !== componentIsValid) updateIsValid()
   }
 
-  return { context, contextPath, getModel, setModel, evaluate, setValid }
+  return {
+    context,
+    contextPath,
+    getModel,
+    setModel,
+    evaluate,
+    setValid,
+    translations: translations ?? {}
+  }
 }
 
-export function useFormaSubContext(parentModel: string) {
+export function useFormaSubContext(parentModel: string): FormaContextType {
   const {
     contextPath: parentContextPath,
     context: parentContext,
     setModel: parentSetModel,
-    setValid
+    setValid,
+    translations
   } = useContext(FormaContext)
   const contextPath = [...parentContextPath, parentModel]
   const context = (parentContext[parentModel] as JsonObject) || {}
@@ -100,7 +112,15 @@ export function useFormaSubContext(parentModel: string) {
     [context]
   )
 
-  return { context, contextPath, getModel, setModel, evaluate, setValid }
+  return {
+    context,
+    contextPath,
+    getModel,
+    setModel,
+    evaluate,
+    setValid,
+    translations: translations || {}
+  }
 }
 
 function debounce(f: () => void, interval: number) {

@@ -6,9 +6,14 @@ import {
   EffectiveInputProps
 } from './FormaComponent'
 import { FormaContext } from './FormaContext'
+import { getFirstErrorText } from './utils'
 
-export function useEffectiveInputProps<T>({ model, ...rest }: InputProps) {
-  const { setModel, getModel, setValid } = useContext(FormaContext)
+export function useEffectiveInputProps<T>({
+  model,
+  ...rest
+}: InputProps): EffectiveInputProps<T> {
+  const { setModel, getModel, setValid, translations } =
+    useContext(FormaContext)
   const props = useEffectiveProps(rest) as EffectiveInputProps<T>
   const fieldId = useMemo(() => generateId(), [])
   props.value = getModel(model) as T
@@ -21,8 +26,9 @@ export function useEffectiveInputProps<T>({ model, ...rest }: InputProps) {
     .filter(Boolean) || []) as Array<string>
 
   setValid(fieldId, errors.length == 0)
+  const firstError = getFirstErrorText(errors, translations)
 
-  return { ...props, errors }
+  return { ...props, errors, firstError }
 }
 
 export function useEffectiveProps({
