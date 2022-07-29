@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import TextField from '@mui/material/TextField'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 import { InputProps, EffectiveInputProps } from '../FormaComponent'
 import { useEffectiveInputProps } from '../useEffectiveProps'
 
@@ -16,8 +16,9 @@ export function ResolvedText({
   enabled,
   visible,
   setValue,
-  errors
-}: EffectiveInputProps<string>) {
+  errors,
+  className
+}: EffectiveInputProps<string> & TextFieldProps) {
   const onChange = useCallback(
     (event) => setValue(event.currentTarget.value),
     [setValue]
@@ -28,6 +29,7 @@ export function ResolvedText({
 
   return (
     <TextField
+      classes={{ root: className }}
       label={label}
       value={value || ''}
       onChange={onChange}

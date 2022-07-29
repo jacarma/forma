@@ -17,7 +17,12 @@ const App = () => {
   const [isValid, setValid] = useState<boolean>(false)
   return (
     <div>
-      <Forma initialContext={ctx} onChange={setCtx} onValidChange={setValid}>
+      <Forma
+        initialContext={ctx}
+        onChange={setCtx}
+        onValidChange={setValid}
+        columns={3}
+      >
         <Checkbox
           model='lol'
           label='Lol'
@@ -30,8 +35,8 @@ const App = () => {
           model='secondName'
           label={(context) => `Second Name (${context.firstName})`}
         />
-        <SubContext model='address'>
-          <Text model='street' label='Street Name'></Text>
+        <SubContext model='address' className='w-full container'>
+          <Text model='street' label='Street Name' className='w-2'></Text>
           <Text
             model='number'
             label={({ street }) => `Number (${street})`}

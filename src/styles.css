@@ -1,5 +1,44 @@
-/* add css module styles here (optional) */
 
-body {
-  padding: 30px;
+:global(.w-full) {
+  grid-column: auto / span var(--forma-columns, 1);
+}
+:global(.w-2) {
+  grid-column: auto / span 2;
+}
+:global(.w-3) {
+  grid-column: auto / span 3;
+}
+:global(.w-4) {
+  grid-column: auto / span 4;
+}
+:global(.w-5) {
+  grid-column: auto / span 5;
+}
+:global(.w-6) {
+  grid-column: auto / span 6;
+}
+:global(.w-7) {
+  grid-column: auto / span 7;
+}
+:global(.w-8) {
+  grid-column: auto / span 8;
+}
+:global(.w-9) {
+  grid-column: auto / span 9;
+}
+:global(.w-10) {
+  grid-column: auto / span 10;
+}
+:global(.w-11) {
+  grid-column: auto / span 11;
+}
+:global(.w-12) {
+  grid-column: auto / span 12;
+}
+
+
+:global(.container) {
+  display: grid;
+  grid-template-columns: repeat(var(--forma-columns, 1), 1fr);
+  grid-gap: 10px;
 }

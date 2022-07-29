@@ -31,16 +31,18 @@ export function useEffectiveProps({
   visible,
   description,
   validations,
-  children
+  className,
+  ...props
 }: ComponentProps) {
   const { evaluate } = useContext(FormaContext)
   return {
+    ...props,
     label: evaluate(label),
     enabled: evaluate(enabled) ?? true,
     description: evaluate(description),
     visible: evaluate(visible) ?? true,
     validations: evaluate(validations),
-    children: children
+    className: evaluate(className)
   } as EffectiveComponentProps
 }
 

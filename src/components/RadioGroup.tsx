@@ -31,7 +31,7 @@ export function RadioGroup(rawProps: InputProps) {
   if (!visible) return null
 
   return (
-    <FormControl error={!!errors?.length}>
+    <FormControl error={!!errors?.length} style={{ margin: '8px' }}>
       <FormLabel>{label || ''}</FormLabel>
       <MuiRadioGroup value={value || ''} name={label} onChange={onChange}>
         {children}
@@ -49,7 +49,7 @@ export function Radio({ value, ...rawProps }: RadioProps) {
     <FormControlLabel
       value={value}
       control={<MuiRadio />}
-      label={label || ''}
+      label={label || '' + value || ''}
     />
   )
 }

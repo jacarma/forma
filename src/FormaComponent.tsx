@@ -14,6 +14,7 @@ export type ComponentProps = {
   description?: ComputableProp<string>
   validations?: ComputableProp<ValidationsType>
   children?: JSX.Element | JSX.Element[]
+  className?: ComputableProp<string>
 }
 
 export type InputProps = ComponentProps & {
@@ -27,6 +28,7 @@ export type EffectiveComponentProps = {
   description?: string
   validations?: ValidationsType
   children?: JSX.Element | JSX.Element[]
+  className?: string
 }
 
 export type EffectiveInputProps<T> = EffectiveComponentProps & {
